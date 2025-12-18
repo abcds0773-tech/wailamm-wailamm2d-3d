@@ -25,16 +25,14 @@
 
   <!-- Results Section -->
   <section id="results" class="section">
-    <h2>Latest 2D Results</h2>
+    <h2>Live 2D Result</h2>
     <div class="box" id="results2d">
-      <!-- Live 2D results will appear here -->
-      Loading 2D results...
+      Loading live results...
     </div>
 
-    <h2>Latest 3D Results</h2>
+    <h2>Previous Results</h2>
     <div class="box" id="results3d">
-      <!-- Live 3D results will appear here -->
-      Loading 3D results...
+      Loading previous results...
     </div>
   </section>
 
@@ -81,37 +79,41 @@
   <script>
     async function fetchResults() {
       try {
-        // Example JSON API URL (replace with real API)
-        const response = await fetch('https://example.com/api/2d3d');
+        const response = await fetch('https://api.thaistock2d.com/live');
         const data = await response.json();
 
-        // Update 2D results
+        // Live 2D
         const results2d = document.getElementById('results2d');
-        results2d.innerHTML = '';
-        data['2d'].forEach((num, index) => {
-          const p = document.createElement('p');
-          p.textContent = `${index + 1}. ${num}`;
-          results2d.appendChild(p);
-        });
+        results2d.innerHTML = `
+          <strong>Live 2D:</strong> ${data.live.twod} |
+          Set: ${data.live.set} |
+          Value: ${data.live.value} |
+          Time: ${data.live.time}
+        `;
 
-        // Update 3D results
+        // Previous results
         const results3d = document.getElementById('results3d');
         results3d.innerHTML = '';
-        data['3d'].forEach((num, index) => {
-          const p = document.createElement('p');
-          p.textContent = `${index + 1}. ${num}`;
-          results3d.appendChild(p);
+        const ul = document.createElement('ul');
+
+        data.result.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `Set: ${item.set} | Value: ${item.value} | Open Time: ${item.open_time} | 2D: ${item.twod}`;
+          ul.appendChild(li);
         });
+
+        results3d.appendChild(ul);
 
       } catch (error) {
         console.error('Error fetching results:', error);
+        document.getElementById('results2d').textContent = 'Error loading live results.';
+        document.getElementById('results3d').textContent = 'Error loading previous results.';
       }
     }
 
     // Initial fetch
     fetchResults();
-
-    // Refresh results every 60 seconds
+    // Auto refresh every 60 seconds
     setInterval(fetchResults, 60000);
   </script>
 
