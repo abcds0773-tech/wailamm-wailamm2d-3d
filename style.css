@@ -106,3 +106,12 @@ table th {
   color: #fff;
   margin-top: 20px;
 }
+
+/* Previous results list */
+#results3d ul {
+  margin-top: 10px;
+}
+
+#results3d li {
+  margin-bottom: 6px;
+}
