@@ -79,10 +79,11 @@
   <script>
     async function fetchResults() {
       try {
+        // Live API URL
         const response = await fetch('https://api.thaistock2d.com/live');
         const data = await response.json();
 
-        // Live 2D
+        // Live 2D result
         const results2d = document.getElementById('results2d');
         results2d.innerHTML = `
           <strong>Live 2D:</strong> ${data.live.twod} |
@@ -95,13 +96,11 @@
         const results3d = document.getElementById('results3d');
         results3d.innerHTML = '';
         const ul = document.createElement('ul');
-
         data.result.forEach(item => {
           const li = document.createElement('li');
           li.textContent = `Set: ${item.set} | Value: ${item.value} | Open Time: ${item.open_time} | 2D: ${item.twod}`;
           ul.appendChild(li);
         });
-
         results3d.appendChild(ul);
 
       } catch (error) {
