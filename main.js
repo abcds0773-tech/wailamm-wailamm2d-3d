@@ -1,3 +1,16 @@
+let number = 0;
+const liveNumber = document.getElementById("liveNumber");
+
+setInterval(() => {
+  number += Math.floor(Math.random() * 5) + 1; // jump value
+  liveNumber.innerText = number;
+
+  // restart animation
+  liveNumber.classList.remove("jump");
+  void liveNumber.offsetWidth; // trick to restart animation
+  liveNumber.classList.add("jump");
+
+}, 2000); // 2 seconds
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
