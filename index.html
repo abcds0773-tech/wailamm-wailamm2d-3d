@@ -86,6 +86,94 @@ function scratch() {
 lucide.createIcons();
 </script>
 
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Waila 2D Live</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#0b2a4a] text-white min-h-screen">
+
+<header class="text-center py-4 bg-[#081f36]">
+  <h1 class="text-xl font-bold">Waila MM2D</h1>
+  <p class="text-xs text-slate-300">LIVE 2D Result</p>
+</header>
+
+<main class="pb-24">
+
+<section id="home" class="px-4">
+  <div class="text-center py-6">
+    <div id="live2d" class="text-7xl font-bold">--</div>
+    <div class="mt-2 text-green-400 text-sm">● LIVE</div>
+  </div>
+</section>
+
+<section id="gift" class="hidden px-4 py-6">
+  <button onclick="scratch()" class="bg-yellow-400 text-black px-4 py-2 rounded-xl">
+    ခဲချစ်ကဒ် ခြစ်မယ်
+  </button>
+  <div id="scratchText" class="mt-4 text-3xl text-center">---</div>
+</section>
+
+<section id="profile" class="hidden px-4 py-6">
+  <h2 class="text-lg font-bold mb-4">👤 Profile Login</h2>
+
+  <button onclick="googleLogin()"
+    class="w-full bg-white text-black py-3 rounded-xl mb-3">
+    Login with Google
+  </button>
+
+  <input id="phone" placeholder="+959xxxxxxxx"
+    class="w-full p-3 rounded-xl text-black mb-2" />
+
+  <div id="recaptcha-container" class="mb-2"></div>
+
+  <button onclick="sendOTP()"
+    class="w-full bg-green-500 py-3 rounded-xl mb-2">
+    Send OTP
+  </button>
+
+  <input id="otp" placeholder="Enter OTP"
+    class="w-full p-3 rounded-xl text-black mb-2" />
+
+  <button onclick="verifyOTP()"
+    class="w-full bg-blue-500 py-3 rounded-xl">
+    Verify OTP
+  </button>
+
+  <div id="userInfo" class="mt-3 text-sm"></div>
+</section>
+
+</main>
+
+<nav class="fixed bottom-0 left-0 right-0 bg-[#081f36]">
+  <div class="grid grid-cols-3 text-center py-2 text-xs">
+    <button onclick="showTab('home')">Live</button>
+    <button onclick="showTab('gift')">Gift</button>
+    <button onclick="showTab('profile')">Profile</button>
+  </div>
+</nav>
+
+<!-- NORMAL JS -->
+<script>
+function showTab(tab) {
+  ["home","gift","profile"].forEach(id =>
+    document.getElementById(id).classList.add("hidden")
+  );
+  document.getElementById(tab).classList.remove("hidden");
+}
+
+function scratch() {
+  scratchText.innerText = Math.floor(100 + Math.random() * 900);
+}
+lucide.createIcons();
+</script>
+
 <!-- FIREBASE MODULE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -132,6 +220,9 @@ window.verifyOTP = async () => {
   userInfo.innerText = "Phone Login Success";
 };
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
