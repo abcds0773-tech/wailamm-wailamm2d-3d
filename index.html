@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="my"
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Waila 2D Live</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-[#0b2a4a] text-white min-h-screen">
@@ -84,10 +85,47 @@ setInterval(fetchLive, 3000);
 </script>
 
 </body>
-  
-<div>Live</div>
-  <div>Feed</div>
-  <div>Gift</div>
-  <div>Profile</div>
+  <section id="home" class="px-4">
+  <h2 class="font-semibold mb-2">🔥 အထူးမွေးဂဏန်း</h2>
+  <div class="grid grid-cols-4 gap-3">
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">76</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">97</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">51</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">25</div>
+  </div>
+</section>
+<nav class="fixed bottom-0 left-0 right-0 bg-[#081f36] text-white">
+  <div class="grid grid-cols-4 text-center py-2 text-xs">
 
+    <button onclick="showTab('home')" class="space-y-1">
+      <i data-lucide="home"></i>
+      <div>Live</div>
+    </button>
 
+    <button onclick="showTab('feed')" class="space-y-1">
+      <i data-lucide="list"></i>
+      <div>Feed</div>
+    </button>
+    
+<script>
+function showTab(tab) {
+  ["home","feed","gift","profile"].forEach(id => {
+    document.getElementById(id)?.classList.add("hidden");
+  });
+  document.getElementById(tab)?.classList.remove("hidden");
+}
+</script>
+    <button onclick="showTab('gift')" class="space-y-1">
+      <i data-lucide="gift"></i>
+      <div>Gift</div>
+    </button>
+
+    <button onclick="showTab('profile')" class="space-y-1">
+      <i data-lucide="user"></i>
+      <div>Profile</div>
+    </button>
+
+  </div>
+</nav>
+
+<script>lucide.createIcons()</script>
