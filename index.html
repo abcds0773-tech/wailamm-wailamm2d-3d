@@ -107,6 +107,42 @@ const analytics = getAnalytics(app);
   <input type="text" placeholder="Phone or Gmail"
     class="w-full p-3 rounded-xl text-black"/>
 </section>
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+<section id="profile" class="hidden px-4 py-6">
+  <h2 class="text-lg font-bold mb-4">👤 Profile Login</h2>
+
+  <!-- Google -->
+  <button onclick="googleLogin()"
+    class="w-full bg-white text-black py-3 rounded-xl mb-3 font-semibold">
+    Login with Google
+  </button>
+
+  <!-- Phone -->
+  <input id="phone" placeholder="+959xxxxxxxx"
+    class="w-full p-3 rounded-xl text-black mb-2" />
+
+  <div id="recaptcha-container"></div>
+
+  <button onclick="sendOTP()"
+    class="w-full bg-green-500 py-3 rounded-xl mb-2">
+    Send OTP
+  </button>
+
+  <input id="otp" placeholder="Enter OTP"
+    class="w-full p-3 rounded-xl text-black mb-2" />
+
+  <button onclick="verifyOTP()"
+    class="w-full bg-blue-500 py-3 rounded-xl">
+    Verify OTP
+  </button>
+
+  <div id="userInfo" class="mt-4 text-sm"></div>
+</section>
 
 </main>
 
