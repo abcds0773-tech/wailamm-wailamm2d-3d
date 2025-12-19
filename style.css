@@ -34,3 +34,15 @@ table th { background:#34495e; color:#ecf0f1; }
 /* Previous results list */
 #results3d ul { margin-top:10px; }
 #results3d li { margin-bottom:6px; }
+.waila-text {
+  font-size: 80px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #38bdf8;
+  text-shadow:
+    1px 1px 0 #0ea5e9,
+    2px 2px 0 #0284c7,
+    3px 3px 0 #0369a1,
+    4px 4px 0 #075985,
+    6px 6px 12px rgba(0,0,0,0.6);
+}
