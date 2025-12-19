@@ -52,32 +52,35 @@ async function fetchLive() {
     const res = await fetch("https://api.thaistock2d.com/live");
     const data = await res.json();
 
-    // Top live
+    // TOP LIVE
     document.getElementById("live2d").innerText = data.live.twod;
 
-    // Find by time
     const r1201 = data.result.find(r => r.open_time === "12:01:00");
     const r1630 = data.result.find(r => r.open_time === "16:30:00");
 
-    if (r1201) {
-      set1201.innerText = r1201.set;
-      value1201.innerText = r1201.value;
-      twod1201.innerText = r1201.twod;
-    }
+    // 12:01 (fallback to live)
+    document.getElementById("set1201").innerText =
+      r1201 ? r1201.set : data.live.set;
+    document.getElementById("value1201").innerText =
+      r1201 ? r1201.value : data.live.value;
+    document.getElementById("twod1201").innerText =
+      r1201 ? r1201.twod : data.live.twod;
 
-    if (r1630) {
-      set1630.innerText = r1630.set;
-      value1630.innerText = r1630.value;
-      twod1630.innerText = r1630.twod;
-    }
+    // 4:30 (fallback to live)
+    document.getElementById("set1630").innerText =
+      r1630 ? r1630.set : data.live.set;
+    document.getElementById("value1630").innerText =
+      r1630 ? r1630.value : data.live.value;
+    document.getElementById("twod1630").innerText =
+      r1630 ? r1630.twod : data.live.twod;
 
   } catch (e) {
-    console.error("API error", e);
+    console.error(e);
   }
 }
 
 fetchLive();
-setInterval(fetchLive, 3000); // 🔥 3 sec LIVE
+setInterval(fetchLive, 3000);
 </script>
 
 </body>
