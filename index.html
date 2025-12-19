@@ -5,224 +5,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Waila 2D Live</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-[#0b2a4a] text-white min-h-screen">
 
+<!-- HEADER -->
 <header class="text-center py-4 bg-[#081f36]">
   <h1 class="text-xl font-bold">Waila MM2D</h1>
   <p class="text-xs text-slate-300">LIVE 2D Result</p>
 </header>
 
+<!-- MAIN -->
 <main class="pb-24">
 
+<!-- HOME -->
 <section id="home" class="px-4">
+
   <div class="text-center py-6">
     <div id="live2d" class="text-7xl font-bold">--</div>
     <div class="mt-2 text-green-400 text-sm">● LIVE</div>
   </div>
+
+  <div class="space-y-4">
+
+    <!-- 12:01 -->
+    <div class="bg-white text-slate-800 rounded-2xl p-4 shadow">
+      <div class="text-center font-semibold">12:01 PM</div>
+      <div class="grid grid-cols-3 text-center mt-2">
+        <div><div class="text-xs">Set</div><div id="set1201">--</div></div>
+        <div><div class="text-xs">Value</div><div id="value1201">--</div></div>
+        <div><div class="text-xs">2D</div><div id="twod1201" class="text-orange-500 font-bold">--</div></div>
+      </div>
+    </div>
+
+    <!-- 4:30 -->
+    <div class="bg-white text-slate-800 rounded-2xl p-4 shadow">
+      <div class="text-center font-semibold">4:30 PM</div>
+      <div class="grid grid-cols-3 text-center mt-2">
+        <div><div class="text-xs">Set</div><div id="set1630">--</div></div>
+        <div><div class="text-xs">Value</div><div id="value1630">--</div></div>
+        <div><div class="text-xs">2D</div><div id="twod1630" class="text-orange-500 font-bold">--</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="font-semibold mt-6 mb-2">🔥 အထူးမွေးဂဏန်း</h2>
+  <div class="grid grid-cols-4 gap-3">
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">76</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">97</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">51</div>
+    <div class="bg-white text-black rounded-xl py-4 text-center font-bold">25</div>
+  </div>
 </section>
 
+<!-- FEED -->
+<section id="feed" class="hidden px-4 py-6">
+  <h2 class="text-lg font-bold">Feed</h2>
+  <p class="text-slate-300 text-sm">Coming soon...</p>
+</section>
+
+<!-- GIFT -->
 <section id="gift" class="hidden px-4 py-6">
-  <button onclick="scratch()" class="bg-yellow-400 text-black px-4 py-2 rounded-xl">
+  <h2 class="text-lg font-bold mb-2">🎁 Gift</h2>
+  <button onclick="scratch()" class="bg-yellow-400 text-black px-4 py-2 rounded-xl font-bold">
     ခဲချစ်ကဒ် ခြစ်မယ်
   </button>
-  <div id="scratchText" class="mt-4 text-3xl text-center">---</div>
+  <div id="scratchText" class="mt-4 text-3xl font-bold text-center">---</div>
 </section>
 
+<!-- PROFILE -->
 <section id="profile" class="hidden px-4 py-6">
   <h2 class="text-lg font-bold mb-4">👤 Profile Login</h2>
 
-  <button onclick="googleLogin()"
-    class="w-full bg-white text-black py-3 rounded-xl mb-3">
+  <button class="w-full bg-white text-black py-3 rounded-xl mb-3 font-semibold">
     Login with Google
   </button>
 
-  <input id="phone" placeholder="+959xxxxxxxx"
+  <input placeholder="+959xxxxxxxx"
     class="w-full p-3 rounded-xl text-black mb-2" />
 
-  <div id="recaptcha-container" class="mb-2"></div>
-
-  <button onclick="sendOTP()"
-    class="w-full bg-green-500 py-3 rounded-xl mb-2">
+  <button class="w-full bg-green-500 py-3 rounded-xl">
     Send OTP
   </button>
-
-  <input id="otp" placeholder="Enter OTP"
-    class="w-full p-3 rounded-xl text-black mb-2" />
-
-  <button onclick="verifyOTP()"
-    class="w-full bg-blue-500 py-3 rounded-xl">
-    Verify OTP
-  </button>
-
-  <div id="userInfo" class="mt-3 text-sm"></div>
 </section>
 
 </main>
 
+<!-- BOTTOM NAV -->
 <nav class="fixed bottom-0 left-0 right-0 bg-[#081f36]">
-  <div class="grid grid-cols-3 text-center py-2 text-xs">
-    <button onclick="showTab('home')">Live</button>
-    <button onclick="showTab('gift')">Gift</button>
-    <button onclick="showTab('profile')">Profile</button>
+  <div class="grid grid-cols-4 text-center py-2 text-xs">
+
+    <button onclick="showTab('home')">
+      <i data-lucide="home"></i>
+      <div>Live</div>
+    </button>
+
+    <button onclick="showTab('feed')">
+      <i data-lucide="list"></i>
+      <div>Feed</div>
+    </button>
+
+    <button onclick="showTab('gift')">
+      <i data-lucide="gift"></i>
+      <div>Gift</div>
+    </button>
+
+    <button onclick="showTab('profile')">
+      <i data-lucide="user"></i>
+      <div>Profile</div>
+    </button>
+
   </div>
 </nav>
 
-<!-- NORMAL JS -->
+<!-- MAIN SCRIPT -->
 <script>
 function showTab(tab) {
-  ["home","gift","profile"].forEach(id =>
+  ["home","feed","gift","profile"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
   document.getElementById(tab).classList.remove("hidden");
 }
 
 function scratch() {
-  scratchText.innerText = Math.floor(100 + Math.random() * 900);
+  document.getElementById("scratchText").innerText =
+    Math.floor(100 + Math.random() * 900);
 }
+
+async function fetchLive() {
+  try {
+    const res = await fetch("https://api.thaistock2d.com/live");
+    const data = await res.json();
+
+    document.getElementById("live2d").innerText = data.live.twod;
+
+    const r1201 = data.result.find(r => r.open_time === "12:01:00");
+    const r1630 = data.result.find(r => r.open_time === "16:30:00");
+
+    if (r1201) {
+      set1201.innerText = r1201.set;
+      value1201.innerText = r1201.value;
+      twod1201.innerText = r1201.twod;
+    }
+
+    if (r1630) {
+      set1630.innerText = r1630.set;
+      value1630.innerText = r1630.value;
+      twod1630.innerText = r1630.twod;
+    }
+  } catch (e) {
+    console.log("API error", e);
+  }
+}
+
+fetchLive();
+setInterval(fetchLive, 3000);
 lucide.createIcons();
 </script>
-
-<!DOCTYPE html>
-<html lang="my">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Waila 2D Live</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-
-<body class="bg-[#0b2a4a] text-white min-h-screen">
-
-<header class="text-center py-4 bg-[#081f36]">
-  <h1 class="text-xl font-bold">Waila MM2D</h1>
-  <p class="text-xs text-slate-300">LIVE 2D Result</p>
-</header>
-
-<main class="pb-24">
-
-<section id="home" class="px-4">
-  <div class="text-center py-6">
-    <div id="live2d" class="text-7xl font-bold">--</div>
-    <div class="mt-2 text-green-400 text-sm">● LIVE</div>
-  </div>
-</section>
-
-<section id="gift" class="hidden px-4 py-6">
-  <button onclick="scratch()" class="bg-yellow-400 text-black px-4 py-2 rounded-xl">
-    ခဲချစ်ကဒ် ခြစ်မယ်
-  </button>
-  <div id="scratchText" class="mt-4 text-3xl text-center">---</div>
-</section>
-
-<section id="profile" class="hidden px-4 py-6">
-  <h2 class="text-lg font-bold mb-4">👤 Profile Login</h2>
-
-  <button onclick="googleLogin()"
-    class="w-full bg-white text-black py-3 rounded-xl mb-3">
-    Login with Google
-  </button>
-
-  <input id="phone" placeholder="+959xxxxxxxx"
-    class="w-full p-3 rounded-xl text-black mb-2" />
-
-  <div id="recaptcha-container" class="mb-2"></div>
-
-  <button onclick="sendOTP()"
-    class="w-full bg-green-500 py-3 rounded-xl mb-2">
-    Send OTP
-  </button>
-
-  <input id="otp" placeholder="Enter OTP"
-    class="w-full p-3 rounded-xl text-black mb-2" />
-
-  <button onclick="verifyOTP()"
-    class="w-full bg-blue-500 py-3 rounded-xl">
-    Verify OTP
-  </button>
-
-  <div id="userInfo" class="mt-3 text-sm"></div>
-</section>
-
-</main>
-
-<nav class="fixed bottom-0 left-0 right-0 bg-[#081f36]">
-  <div class="grid grid-cols-3 text-center py-2 text-xs">
-    <button onclick="showTab('home')">Live</button>
-    <button onclick="showTab('gift')">Gift</button>
-    <button onclick="showTab('profile')">Profile</button>
-  </div>
-</nav>
-
-<!-- NORMAL JS -->
-<script>
-function showTab(tab) {
-  ["home","gift","profile"].forEach(id =>
-    document.getElementById(id).classList.add("hidden")
-  );
-  document.getElementById(tab).classList.remove("hidden");
-}
-
-function scratch() {
-  scratchText.innerText = Math.floor(100 + Math.random() * 900);
-}
-lucide.createIcons();
-</script>
-
-<!-- FIREBASE MODULE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  RecaptchaVerifier,
-  signInWithPhoneNumber
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDl5gLNJwcnzaFKUQK0sIQeM37JNTYCDu0",
-  authDomain: "waila2d.firebaseapp.com",
-  projectId: "waila2d",
-  appId: "1:1081820237488:web:b487ca0f8494dda603f575"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-window.googleLogin = async () => {
-  const result = await signInWithPopup(auth, provider);
-  userInfo.innerText = "Google Login Success";
-};
-
-window.recaptchaVerifier = new RecaptchaVerifier(
-  auth,
-  "recaptcha-container",
-  { size: "normal" }
-);
-
-window.sendOTP = async () => {
-  const phone = phone.value;
-  window.confirmationResult =
-    await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
-  alert("OTP ပို့ပြီးပါပြီ");
-};
-
-window.verifyOTP = async () => {
-  const code = otp.value;
-  await window.confirmationResult.confirm(code);
-  userInfo.innerText = "Phone Login Success";
-};
-</script>
-
-</body>
-</html>
 
 </body>
 </html>
