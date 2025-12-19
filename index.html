@@ -4,7 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Waila 2D Live</title>
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDl5gLNJwcnzaFKUQK0sIQeM37JNTYCDu0",
+  authDomain: "waila2d.firebaseapp.com",
+  projectId: "waila2d",
+  storageBucket: "waila2d.firebasestorage.app",
+  messagingSenderId: "1081820237488",
+  appId: "1:1081820237488:web:b487ca0f8494dda603f575",
+  measurementId: "G-0RJFVS0F57"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
